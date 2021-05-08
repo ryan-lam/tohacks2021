@@ -9,11 +9,11 @@ class Profile(models.Model):
     address = models.CharField(max_length=64)
     gender = models.CharField(max_length=64)
 
-    income = models.IntegerField()
+    income = models.IntegerField(required=False)
 
-    expertise = models.CharField(max_length=256)
-    division = models.CharField(max_length=256)
-    hours = models.CharField(max_length=256)
+    expertise = models.CharField(max_length=256, required=False)
+    division = models.CharField(max_length=256, required=False)
+    hours = models.CharField(max_length=256, required=False)
 
     # models.ManyToManyField(Appointments, blank=True, related_name="profile")
     def __str__(self):
