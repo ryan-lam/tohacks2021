@@ -15,21 +15,15 @@ class Login(forms.Form):
 def index(request):
     if request.method == "POST":
         login = Login(request.POST)
+        username =  request.POST["username"]
+        password =  request.POST["password"]
 
-        if login.is_valid():
-            username =  login.cleaned_data["username"]
-            password =  login.cleaned_data["password"]
+        if username == "rep" and password == "1234":
+            return render(request, "repdashboard.html")
+        elif username == "client" and password == "1234":
+            return render(request, "clientdashboard.html")
+        else:
+            return render (request, "index.html", {"attempt":True})
 
-            if username == "rep" and password == "1234":
-                return render(request, "repdashboard.html")
-            elif username == "client" and password == "1234":
-                return render(request, "clientdashboard.html")
-            else:
-                return render (request, "index.html", {
-                    "login":Login(), "attempt":True
-                })
-
-    return render(request, "index.html", {
-        "login": Login(), "attempt":False
-    })
+    return render(request, "index.html", {"attempt":False})
 

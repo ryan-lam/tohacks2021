@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>
-            Rep Dashboard
-        </title>
+        <title>MyInsurance - Rep Dash</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+        <link href="../static/style.css" rel="stylesheet">
     </head>
 
     <body>
-        Rep Dashboard
+        <nav class="navbar navbar-light bg-white align-items-center container-fluid" style="height: 80px; top: 0;">
+            <!-- Navbar content -->
+            <a href="/" style="text-decoration: none; margin-left: 50px;"><h1 class="text-warning fw-bolder">REP DASHBOARD</h1></a>
+            <!-- <div class="float-end me-5" style="position: relative;">
+                <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 50px; width: 120px;">
+                    Sort By
+                  </button>
+                  <ul class="dropdown-menu" style="position: absolute;">
+                    <li><a class="dropdown-item" href="/date1" >Date (Closest)</a></li>
+                    <li><a class="dropdown-item" href="/date2">Date (Furthest)</a></li>
+                    <li><a class="dropdown-item" href="/alpha1" >Name (Ascending)</a></li>
+                    <li><a class="dropdown-item" href="/alpha2" >Name (Descending)</a></li>
+                  </ul>
+                  <a style="text-decoration: none; margin-right: 10px;" href="/addevents"><button class="btn btn-warning topcustom" style="width: 150px;">Add an Event</button></a> 
+                
+            </div> -->
+        </nav>  
+
+        <div class="loginbox">
+            <h2 style="text-align:center; padding-top: 20px;">LOGIN</h2>
+            <form action="{% url 'index' %}" method="POST">
+                {% csrf_token %}
+      
+                <label style="margin-left: 10%; font-size: 13px;">USERNAME</label>
+                <input type="text" class="form-control" id="inputEmail4" name="username" style="width: 80%; margin: auto; border-radius: 10px;" required>
+                <label style="margin-left: 10%; padding-top: 20px; font-size: 13px;">PASSWORD</label>
+                <input type="password" class="form-control" id="inputPassword4" name="password" style="width: 80%; margin: auto; border-radius: 10px;" required>
+                <button class="btn btn-warning" type="submit" style="width: 200px; display: block; margin: auto; margin-top: 30px; border-radius: 10px;">SUBMIT</button>
+
+            </form>
+            {% if attempt %}
+            <p style="text-align: center; color: red; margin-top: 20px;">Login failed. Please try again</p>
+            {% endif %}
+        </div>
+        
+
+        
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
     </body>
 </html>
