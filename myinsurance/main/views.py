@@ -21,7 +21,9 @@ def index(request):
             password =  login.cleaned_data["password"]
 
             if username == "admin" and password == "1234":
-                return render(request, "testadmin.html")
+                return render(request, "repdashboard.html")
+            elif username == "client" and password == "1234":
+                return render(request, "clientdashboard.html")
             else:
                 return render (request, "index.html", {
                     "login":Login(), "attempt":True
