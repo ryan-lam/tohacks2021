@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django import forms
 from django.urls import reverse
+from .models import Client, Rep, Profile
 
 # Create your views here.
 
@@ -43,14 +44,20 @@ def index(request):
 
 def repdashboard(request):
     if "user" in request.session and request.session["type"] == "rep":
-        return render(request, "repdashboard.html")
+        return render(request, "repdashboard.html", {
+            "userinfo": Rep.objects.get(username=request.session["user"])
+            # "userinfo": "True"
+        })
     else:
         return HttpResponseRedirect(reverse("index"))
 
 
 def clientdashboard(request):
     if "user" in request.session and request.session["type"] == "client":
-        return render(request, "clientdashboard.html")
+        return render(request, "clientdashboard.html", {
+            "userinfo": Client.objects.get(username=request.session["user"])
+            # "userinfo": "True"
+        })
     else:
         return HttpResponseRedirect(reverse("index"))
 

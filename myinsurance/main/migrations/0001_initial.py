@@ -4,6 +4,15 @@ from django.db import migrations, models
 import django.db.models.deletion
 
 
+def initialize(apps, schema_editor):
+    Client = apps.get_model('main', 'Client')
+    Rep = apps.get_model('main', 'Rep')
+    for i in range(1, 6):
+        c = Client(username=f"Client {i}", name=f"Client {i}", age=18, address="123 Avenue", gender="M", income=0)
+        r = Rep(username=f"Rep {i}", name=f"Rep {i}", age=18, address="123 Avenue", gender="M", expertise="AUTO", division="None", hours="8")
+        c.save()
+        r.save()
+
 class Migration(migrations.Migration):
 
     initial = True
@@ -50,4 +59,5 @@ class Migration(migrations.Migration):
                 ('rep', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='rep', to='main.rep')),
             ],
         ),
+        migrations.RunPython(initialize),
     ]
