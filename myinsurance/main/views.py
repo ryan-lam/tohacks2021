@@ -20,7 +20,7 @@ def index(request):
             username =  login.cleaned_data["username"]
             password =  login.cleaned_data["password"]
 
-            if username == "admin" and password == "1234":
+            if username == "rep" and password == "1234":
                 return render(request, "repdashboard.html")
             elif username == "client" and password == "1234":
                 return render(request, "clientdashboard.html")
