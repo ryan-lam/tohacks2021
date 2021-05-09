@@ -43,3 +43,14 @@ nav{
     box-shadow: 0px 5px 10px rgb(161, 161, 161);
     transition: all 0.5s;
 }
+
+.appointment_node{
+    height: 175px;
+    width: 60%;
+    margin: auto;
+    margin-top: 20px;
+    background-color: #45D35D;
+    border-radius: 35px;
+    box-shadow: 0px 5px 10px rgb(161, 161, 161);
+    transition: all 0.5s;
+}
