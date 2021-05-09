@@ -28,7 +28,8 @@
                     <li>{{ appointment.rep.name }} (Representative)</li>
                 </ul>
                 <p>
-                    at {{ appointment.time }}
+                    at {{ appointment.time }}<br>
+                    {{ appointment.status }}
                 </p>
 
 
@@ -59,7 +60,7 @@
             <p style="font-size: 25px; margin-left: 40px; text-decoration: underline; padding-top: 15px;">Your Info</p>
             <p style="font-size: 20px; margin-left: 40px; line-height: 15px;">Name: {{ userinfo.name }}  &emsp; Age: {{ userinfo.age }}</p>
             <p style="font-size: 20px; margin-left: 40px; line-height: 15px;">Gender: {{ userinfo.gender }}</p>
-            <p style="font-size: 20px; margin-left: 40px; line-height: 15px;">Adress: {{ userinfo.address }}</p>
+            <p style="font-size: 20px; margin-left: 40px; line-height: 15px;">Address: {{ userinfo.address }}</p>
             <p style="font-size: 20px; margin-left: 40px; line-height: 15px;">Income: {{ userinfo.income }}</p>
         
         </div>
