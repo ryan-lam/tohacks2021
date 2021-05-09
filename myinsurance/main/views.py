@@ -50,13 +50,11 @@ def repdashboard(request):
 def clientdashboard(request):
     if "user" in request.session and request.session["type"] == "client":
         return render(request, "clientdashboard.html", {
-            "appointmentdb":Appointments.objects.get,
+            "appointmentdb": Appointments.objects.filter(client__username=request.session["user"]),
             "userinfo":Client.objects.get(username=request.session["user"])
         })
     else:
         return HttpResponseRedirect(reverse("index"))
-
-
 
 
 def booking(request):
