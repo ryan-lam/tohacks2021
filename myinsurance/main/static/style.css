@@ -16,8 +16,19 @@ nav{
 }
 
 .node{
-    height: 250px;
-    width: 800px;
+    height: 125px;
+    width: 50%;
+    margin: auto;
+    margin-top: 40px;
+    background-color: #45D35D;
+    border-radius: 35px;
+    box-shadow: 0px 5px 10px rgb(161, 161, 161);
+    transition: all 0.5s;
+}
+
+.no_appointment_node{
+    height: 125px;
+    width: 1425px;
     margin: auto;
     margin-top: 20px;
     background-color: #45D35D;

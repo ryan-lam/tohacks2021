@@ -11,7 +11,7 @@
     <body style="background-image: url(../static/images/bg1.jpeg); background-size: cover; background-position: center;">
         <nav class="navbar navbar-light bg-white align-items-center container-fluid" style="height: 80px; top: 0;">
             <!-- Navbar content -->
-            <a href="/" style="text-decoration: none; margin-left: 50px;"><h1 class="fw-bolder" style="color: #45D35D;">MYINSURANCE</h1></a>
+            <a href="/" style="text-decoration: none; margin-left: 50px;"><h1 class="fw-bolder" style="color: #45D35D;">MyInsurance</h1></a>
             <!-- <div class="float-end me-5" style="position: relative;">
                 <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 50px; width: 120px;">
                     Sort By
@@ -34,15 +34,15 @@
         
 
         <div class="loginbox">
-            <h2 style="text-align:center; padding-top: 20px;">LOGIN</h2>
+            <h2 style="text-align:center; padding-top: 20px;">Login</h2>
             <form action="{% url 'index' %}" method="POST">
                 {% csrf_token %}
       
-                <label style="margin-left: 10%; font-size: 13px;">USERNAME</label>
+                <label style="margin-left: 10%; font-size: 13px;">Username</label>
                 <input type="text" class="form-control" id="inputEmail4" name="username" style="width: 80%; margin: auto; border-radius: 10px;" required>
-                <label style="margin-left: 10%; padding-top: 20px; font-size: 13px;">PASSWORD</label>
+                <label style="margin-left: 10%; padding-top: 20px; font-size: 13px;">Password</label>
                 <input type="password" class="form-control" id="inputPassword4" name="password" style="width: 80%; margin: auto; border-radius: 10px;" required>
-                <button class="btn" type="submit" style="width: 200px; display: block; margin: auto; margin-top: 30px; border-radius: 10px; background-color: #45D35D;">SUBMIT</button>
+                <button class="btn" type="submit" style="width: 200px; display: block; margin: auto; margin-top: 30px; border-radius: 10px; background-color: #45D35D;">Sybmit</button>
 
             </form>
             {% if attempt %}

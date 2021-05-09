@@ -1,37 +1,45 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>MyInsurance - Client Dash</title>
+        <title>MyInsurance - Client Dashboard</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
         <link href="../static/style.css" rel="stylesheet">
 
         
-    </head>
 
-    <body>
+
         <nav class="navbar navbar-light bg-white align-items-center container-fluid" style="height: 80px; top: 0;">
             <!-- Navbar content -->
-            <a href="/" style="text-decoration: none; margin-left: 50px;"><h1 class="fw-bolder" style="color: #45D35D;">CLIENT DASHBOARD</h1></a>
+            <a href="/" onclick="return false;" style="text-decoration: none; margin-left: 50px;"><h1 class="fw-bolder" style="color: #45D35D;">Client Dashboard</h1></a>
             <div class="float-end me-5" style="position: relative;">
                 <a style="text-decoration: none; margin-right: 10px;" href="booking"><button class="btn topcustom" style="width: 200px; background-color: #45D35D; color: white; margin-right: 10px;">Book an Appointment</button></a> 
                 <a style="text-decoration: none; margin-right: 10px;" href="/"><button class="btn topcustom" style="width: 100px; background-color: #45D35D; color: white;">Log Out</button></a> 
             </div>
         </nav>  
+    </head>
 
-    
-        <p style="font-size: 25px; margin-top: 20px; margin-left: 50px; color: #28c944; text-decoration: underline;">Your Current Appointments</p>
-        <div class="node">
-            {{ userinfo }}
-        </div>
+    <body>
+        <p style="font-size: 25px; margin-top: 10px; margin-left: 50px; text-decoration: underline;">Your Appointments</p>
 
-        <div class="node">
-            <p>Name: {{ userinfo }}</p>
-            <p>Age: {{ userage }}</p>
-            <p>Adress: {{ useradress }}</p>
-            <p>Gender: {{ usergender }}</p>
-            <p>Income: {{ userage }}</p>
+        {% for appointment in appointmentdb %}
+            <div class="node">
+                {{ appointment }}
+            </div>
+        {% empty %}
+            <div class="no_appointment_node">
+                <p>No appointments. Make an appointment here.</p>
+            </div>
+        {% endfor %}
+
+
+        <div>
+            <p style="font-size: 25px; margin-top: 10px; margin-left: 50px; text-decoration: underline;">Your Info</p>
+            <p style="font-size: 18px; margin-top: 10px; margin-left: 50px;">
+                {{ userinfo.name }}<br>
+                Age: {{ userinfo.age }}, Gender: {{ userinfo.gender }}<br>
+                {{ userinfo.address }}
+            </p>
         </div>
-        
 
 
         
