@@ -7,6 +7,7 @@ from .models import Client, Rep, Profile, Appointments
 # Create your views here.
 
 
+
 # LOGIN (FULLY WORKS)
 def index(request):
     if request.method == "POST":
@@ -30,26 +31,77 @@ def index(request):
         return render(request, "index.html", {"attempt":False})
 
 
+
+
+
 # ENTER REP DASHBOARD
 def repdashboard(request):
     if "user" in request.session and request.session["type"] == "rep":
-        return render(request, "repdashboard.html", {
-            "appointmentdb": Appointments.objects.filter(rep__username=request.session["user"]),
-            "userinfo": Rep.objects.get(username=request.session["user"])
-        })
+
+        if request.method == "POST":
+            client_name = request.POST["client_name"]
+            rep_name = request.POST["rep_name"]
+            time = request.POST["time"]
+            submit_btn = request.POST["submit"]
+
+            client = Client.objects.get(name=client_name)
+            rep = Rep.objects.get(name=rep_name)
+            appointments = Appointments.objects.get(client=client, rep=rep, time=time)
+
+            if submit_btn == "Accept":
+                appointments.status = "Accepted"
+                appointments.save()
+            elif submit_btn == "Decline":
+                appointments.delete()
+            else:
+                pass
+
+            return render(request, "repdashboard.html", {
+                "appointmentdb": Appointments.objects.filter(rep__username=request.session["user"]),
+                "userinfo": Rep.objects.get(username=request.session["user"])
+            })
+        else: 
+            return render(request, "repdashboard.html", {
+                "appointmentdb": Appointments.objects.filter(rep__username=request.session["user"]),
+                "userinfo": Rep.objects.get(username=request.session["user"])
+            })
     else:
         return HttpResponseRedirect(reverse("index"))
+
+
+
 
 
 # ENTER CLIENT DASHBOARD
 def clientdashboard(request):
     if "user" in request.session and request.session["type"] == "client":
-        return render(request, "clientdashboard.html", {
-            "appointmentdb": Appointments.objects.filter(client__username=request.session["user"]),
-            "userinfo":Client.objects.get(username=request.session["user"])
-        })
+
+        if request.method == "POST":
+            client_name = request.POST["client_name"]
+            rep_name = request.POST["rep_name"]
+            time = request.POST["time"]
+
+            client = Client.objects.get(name=client_name)
+            rep = Rep.objects.get(name=rep_name)
+
+            appointments = Appointments.objects.get(client=client, rep=rep, time=time)
+            appointments.delete()
+
+            return render(request, "clientdashboard.html", {
+                "appointmentdb": Appointments.objects.filter(client__username=request.session["user"]),
+                "userinfo":Client.objects.get(username=request.session["user"])
+            })
+
+        else:
+            return render(request, "clientdashboard.html", {
+                "appointmentdb": Appointments.objects.filter(client__username=request.session["user"]),
+                "userinfo":Client.objects.get(username=request.session["user"])
+            })
     else:
         return HttpResponseRedirect(reverse("index"))
+
+
+
 
 
 # BOOKING APPOINTMENTS
@@ -64,7 +116,7 @@ def booking(request):
             client = Client.objects.get(username=client_username)
             rep = Rep.objects.get(username=rep_username)
 
-            appointment = Appointments(client=client, rep=rep, time=time)
+            appointment = Appointments(client=client, rep=rep, time=time, status="Pending")
             appointment.save()
             return HttpResponseRedirect(reverse(clientdashboard))
             # return render(request, "booking.html", {

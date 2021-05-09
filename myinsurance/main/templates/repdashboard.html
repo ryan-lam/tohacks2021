@@ -18,14 +18,30 @@
         <p style="font-size: 25px; margin-top: 10px; margin-left: 50px; text-decoration: underline; color: #45D35D;">Hello {{ userinfo.name }}! &ensp;Here are your client's appointments.</p>
 
         {% for appointment in appointmentdb %}
-            <div class="node" style="position: relative;">
+            <form class="node" style="position: relative;" action="{% url 'repdashboard' %}" method="POST">
                 {% csrf_token %}
                 <p style="font-size: 20px; margin-left: 40px; line-height: 25px; padding-top: 20px;" class="fw-bolder">Appointment Between:</p>
                 <p style="font-size: 20px; margin-left: 40px; line-height: 25px;">{{ appointment.rep.name }} (You) and {{ appointment.client.name }} (Client)</p>
+                <p style="font-size: 20px; margin-left: 40px; line-height: 25px;">Status: {{ appointment.status }}</p>
                 <p style="font-size: 20px; margin-left: 40px; line-height: 25px;">Time: {{ appointment.time }}</p>
+                <input type="text" value="{{ appointment.client.name }}" name="client_name" hidden>
+                <input type="text" value="{{ appointment.rep.name }}" name="rep_name" hidden>
+                <input type="text" value="{{ appointment.time }}" name="time" hidden>
+                <div style="position: absolute; right: 30px; top: 20px; width: 100px;">
+                    {% if appointment.status == "Accepted" %}
+                    <button class="btn btn-danger" style="width: 100px;" value="Decline" type="submit" name="submit">Decline</button>
+                    {% else %}
+                    <button class="btn btn-success" style="width: 100px;" value="Accept" type="submit" name="submit">Accept</button>
+                    <button class="btn btn-danger" style="margin-top: 10px; width: 100px;" value="Decline" type="submit" name="submit">Decline</button>
+                    {% endif%}
+                    
+                </div>
+                
+            </form>
 
-                <button class="btn btn-success" style="position: absolute; right: 30px; top: 20px;">Finished Appointment</button>
-            </div>
+            
+
+
         {% empty %}
             <div class="no_appointment_node">
                 <p style="font-display: 25px; text-align: center; padding-top: 30px;">No scheduled appointments.</p>
