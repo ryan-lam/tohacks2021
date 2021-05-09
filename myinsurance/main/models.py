@@ -40,6 +40,7 @@ class Appointments(models.Model):
     client = models.ForeignKey(Client, on_delete=models.PROTECT, related_name="client", null=True)
     rep = models.ForeignKey(Rep, on_delete=models.PROTECT, related_name="rep", null=True)
     time = models.CharField(max_length=64)
+    status = models.CharField(max_length=32)
 
     def __str__(self):
-        return f"{self.client} : {self.rep} : {self.time}"
+        return f"{self.client} : {self.rep} : {self.time} : {self.status}"
