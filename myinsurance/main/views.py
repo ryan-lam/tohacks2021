@@ -21,11 +21,11 @@ def index(request):
             username =  login.cleaned_data["username"]
             password =  login.cleaned_data["password"]
 
-            if username == "rep" and password == "1234":
+            if (username == "rep1" or username == "rep2") and password == "1234":
                 request.session["user"] = username
                 request.session["type"] = "rep"
                 return HttpResponseRedirect(reverse("repdashboard"))
-            elif username == "client" and password == "1234":
+            elif (username == "client1" or username == "client2") and password == "1234":
                 request.session["user"] = username
                 request.session["type"] = "client"
                 return HttpResponseRedirect(reverse("clientdashboard"))
@@ -44,7 +44,7 @@ def index(request):
 
 def repdashboard(request):
     if "user" in request.session and request.session["type"] == "rep":
-        user = Client.objects.get(username=request.session["user"])
+        user = Rep.objects.get(username=request.session["user"])
         return render(request, "repdashboard.html", {
             "userinfo":user.name
         })
