@@ -17,21 +17,8 @@
         
         </nav>  
 
-        <div class="loginbox">
-            <h2 style="text-align:center; padding-top: 20px;">LOGIN</h2>
-            <form action="{% url 'index' %}" method="POST">
-                {% csrf_token %}
-      
-                <label style="margin-left: 10%; font-size: 13px;">USERNAME</label>
-                <input type="text" class="form-control" id="inputEmail4" name="username" style="width: 80%; margin: auto; border-radius: 10px;" required>
-                <label style="margin-left: 10%; padding-top: 20px; font-size: 13px;">PASSWORD</label>
-                <input type="password" class="form-control" id="inputPassword4" name="password" style="width: 80%; margin: auto; border-radius: 10px;" required>
-                <button class="btn btn-warning" type="submit" style="width: 200px; display: block; margin: auto; margin-top: 30px; border-radius: 10px;">SUBMIT</button>
-
-            </form>
-            {% if attempt %}
-            <p style="text-align: center; color: red; margin-top: 20px;">Login failed. Please try again</p>
-            {% endif %}
+        <div class="node">
+            {{ userinfo }}
         </div>
         
 
