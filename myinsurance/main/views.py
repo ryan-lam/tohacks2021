@@ -6,17 +6,10 @@ from .models import Client, Rep, Profile, Appointments
 
 # Create your views here.
 
-# Create the login form
-class Login(forms.Form):
-    username = forms.CharField(label="Username")
-    password = forms.CharField(widget=forms.PasswordInput)
 
-
-
-# Login page (FULLY WORKS)
+# LOGIN (FULLY WORKS)
 def index(request):
     if request.method == "POST":
-        login = Login(request.POST)
         username =  request.POST["username"]
         password =  request.POST["password"]
 
@@ -36,7 +29,7 @@ def index(request):
         return render(request, "index.html", {"attempt":False})
 
 
-
+# ENTER REP DASHBOARD
 def repdashboard(request):
     if "user" in request.session and request.session["type"] == "rep":
         return render(request, "repdashboard.html", {
@@ -47,6 +40,7 @@ def repdashboard(request):
         return HttpResponseRedirect(reverse("index"))
 
 
+# ENTER CLIENT DASHBOARD
 def clientdashboard(request):
     if "user" in request.session and request.session["type"] == "client":
         return render(request, "clientdashboard.html", {
@@ -57,9 +51,32 @@ def clientdashboard(request):
         return HttpResponseRedirect(reverse("index"))
 
 
+# BOOKING APPOINTMENTS
 def booking(request):
     if "user" in request.session and request.session["type"] == "client":
-        return render(request, "booking.html")
+
+        if request.method == "POST":
+            client_username = request.POST["client_username"]
+            rep_username = request.POST["rep_username"]
+            time = request.POST["time"]
+
+            client = Client.objects.get(username=client_username)
+            rep = Rep.objects.get(username=rep_username)
+
+            appointment = Appointments(client=client, rep=rep, time=time)
+            appointment.save()
+            return HttpResponseRedirect(reverse(clientdashboard))
+            # return render(request, "booking.html", {
+            #     "client":request.session["user"],
+            #     "repdb":Rep.objects.all()
+            # })
+
+        else:
+            return render(request, "booking.html", {
+                "client":request.session["user"],
+                "repdb":Rep.objects.all()
+            })
+
     else:
         return HttpResponseRedirect(reverse("index"))
 

@@ -16,12 +16,25 @@
             </div>
         </nav>  
 
-    
-
-        <div class="node">
-
-        </div>
-        
+        {% for rep in repdb %}
+            <div class="appointment_node">
+                <h3>{{ rep.name }} - {{ rep.expertise }}</h3>
+                <p>
+                    <b>Branch/Location: {{ rep.address }}, Hours: {{ rep.hours }}</b><br>
+                    {{ rep.description }}<br>
+                </p>
+            </div>
+            <form action="{% url 'booking' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" value="{{ client }}" name="client_username" hidden>
+                <input type="text" value="{{ rep.username }}" name="rep_username" hidden>
+                <input type="text" class="form-control" id="inputEmail4" name="time" style="width: 80%; margin: auto; border-radius: 10px;" required>
+                <input type="submit" class="btn" name="" style="width: 40%; margin: auto; border-radius: 10px;" required>
+            </form>
+        {% empty %}
+            <h1>No representatives available</h1>
+        {% endfor %}
+            
 
         
 
