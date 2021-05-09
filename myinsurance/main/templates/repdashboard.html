@@ -19,7 +19,7 @@
 
         {% for appointment in appointmentdb %}
             <div class="node">
-                {{ appointment }}
+                {{ appointment.client.name }}
             </div>
         {% empty %}
             <div class="no_appointment_node">

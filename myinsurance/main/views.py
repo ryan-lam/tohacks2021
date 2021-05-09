@@ -40,8 +40,8 @@ def index(request):
 def repdashboard(request):
     if "user" in request.session and request.session["type"] == "rep":
         return render(request, "repdashboard.html", {
-            "appointmentdb":Appointments.objects.get,
-            "userinfo":Rep.objects.get(username=request.session["user"])
+            "appointmentdb": Appointments.objects.filter(rep__username=request.session["user"]),
+            "userinfo": Rep.objects.get(username=request.session["user"])
         })
     else:
         return HttpResponseRedirect(reverse("index"))
