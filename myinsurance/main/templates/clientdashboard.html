@@ -22,7 +22,9 @@
 
         {% for appointment in appointmentdb %}
             <div class="node">
-                {{ appointment }}
+                <p style="font-size: 20px; margin-left: 40px; line-height: 25px;">Name: {{ appointment.client.name }}</p>
+                <p style="font-size: 20px; margin-left: 40px; line-height: 25px;">{{ appointment.rep }}</p>
+                <p style="font-size: 20px; margin-left: 40px; line-height: 25px;"> {{ appointment.time }}</p>
             </div>
         {% empty %}
             <div class="no_appointment_node">
@@ -37,7 +39,6 @@
             <p style="font-size: 20px; margin-left: 40px; line-height: 15px;">Gender: {{ userinfo.gender }}</p>
             <p style="font-size: 20px; margin-left: 40px; line-height: 15px;">Adress: {{ userinfo.address }}</p>
             <p style="font-size: 20px; margin-left: 40px; line-height: 15px;">Income: {{ userinfo.income }}</p>
-        
         </div>
 
 

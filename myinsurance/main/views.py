@@ -17,8 +17,8 @@ class Login(forms.Form):
 def index(request):
     if request.method == "POST":
         login = Login(request.POST)
-        username =  request.POST["username"]
-        password =  request.POST["password"]
+        username = request.POST["username"]
+        password = request.POST["password"]
 
         if (username == "rep1" or username == "rep2") and password == "1234":
             request.session["user"] = username
@@ -50,7 +50,7 @@ def repdashboard(request):
 def clientdashboard(request):
     if "user" in request.session and request.session["type"] == "client":
         return render(request, "clientdashboard.html", {
-            "appointmentdb":Appointments.objects.get,
+            "appointmentdb": Appointments.objects.filter(client__username=request.session["user"]),
             "userinfo":Client.objects.get(username=request.session["user"])
         })
     else:
