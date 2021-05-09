@@ -43,10 +43,40 @@ def repdashboard(request):
 # ENTER CLIENT DASHBOARD
 def clientdashboard(request):
     if "user" in request.session and request.session["type"] == "client":
-        return render(request, "clientdashboard.html", {
-            "appointmentdb": Appointments.objects.filter(client__username=request.session["user"]),
-            "userinfo":Client.objects.get(username=request.session["user"])
-        })
+
+        if request.method == "POST":
+            client_name = request.POST["client_name"]
+            rep_name = request.POST["rep_name"]
+            time = request.POST["time"]
+
+            # print(client_name)
+            # print(rep_name)
+            # print(time)
+
+
+            client = Client.objects.get(name=client_name)
+            rep = Rep.objects.get(name=rep_name)
+
+            appointments = Appointments.objects.get(client=client, rep=rep, time=time)
+            appointments.delete()
+
+            return render(request, "clientdashboard.html", {
+                "appointmentdb": Appointments.objects.filter(client__username=request.session["user"]),
+                "userinfo":Client.objects.get(username=request.session["user"])
+            })
+
+
+
+        else:
+            return render(request, "clientdashboard.html", {
+                "appointmentdb": Appointments.objects.filter(client__username=request.session["user"]),
+                "userinfo":Client.objects.get(username=request.session["user"])
+            })
+
+
+
+
+
     else:
         return HttpResponseRedirect(reverse("index"))
 

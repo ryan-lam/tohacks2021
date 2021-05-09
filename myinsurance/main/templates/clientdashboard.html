@@ -30,10 +30,27 @@
                 <p>
                     at {{ appointment.time }}
                 </p>
+
+
+
+                <form action="{% url 'clientdashboard' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="text" value="{{ appointment.client.name }}" name="client_name" hidden>
+                    <input type="text" value="{{ appointment.rep.name }}" name="rep_name" hidden>
+                    <input type="text" value="{{ appointment.time }}" name="time" hidden>
+                    <input type="submit" class="btn" name="" style="width: 40%; margin: auto; border-radius: 10px;" required>
+                </form>
+
+
+
             </div>
+
+
+
+
         {% empty %}
             <div class="no_appointment_node">
-                <p style="font-display: 25px; text-align: center; padding-top: 30px;">No appointments. Make an appointment here.</p>
+                <p style="font-display: 25px; text-align: center; padding-top: 30px;">No appointments. Make an appointment <a href="booking">Here</a>.</p>
             </div>
         {% endfor %}
 
