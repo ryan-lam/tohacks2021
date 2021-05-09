@@ -1,3 +1,10 @@
+html, *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+}
+
 nav{
     box-shadow: 0px 1px 5px rgb(161, 161, 161);
 }
@@ -17,7 +24,7 @@ nav{
 
 .node{
     height: 125px;
-    width: 50%;
+    width: 60%;
     margin: auto;
     margin-top: 40px;
     background-color: #45D35D;
@@ -28,7 +35,7 @@ nav{
 
 .no_appointment_node{
     height: 125px;
-    width: 1425px;
+    width: 60%;
     margin: auto;
     margin-top: 20px;
     background-color: #45D35D;
