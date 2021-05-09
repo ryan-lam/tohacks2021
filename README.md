@@ -1,6 +1,6 @@
 # MyInsurance - TOHacks 2021
 
-![https://github.com/ryan-lam/tohacks2021/blob/main/Logos%20and%20stuff/logo.jpg](Logo)
+![./Logos and stuff/logo.jpg](Logo)
 
 ## Inspiration
 The frustration of staying on the phone for hours trying to book an appointment is felt by almost everyone. Eliminating this barrier is the first step towards improving the customer experience in the insurance industry, and MyInsurance was designed with that in mind.
