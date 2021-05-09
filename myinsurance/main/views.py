@@ -44,9 +44,9 @@ def index(request):
 
 def repdashboard(request):
     if "user" in request.session and request.session["type"] == "rep":
+        user = Client.objects.get(username=request.session["user"])
         return render(request, "repdashboard.html", {
-            "userinfo": Rep.objects.get(username=request.session["user"])
-            # "userinfo": "True"
+            "userinfo":user.name
         })
     else:
         return HttpResponseRedirect(reverse("index"))
@@ -54,9 +54,9 @@ def repdashboard(request):
 
 def clientdashboard(request):
     if "user" in request.session and request.session["type"] == "client":
+        user = Client.objects.get(username=request.session["user"])
         return render(request, "clientdashboard.html", {
-            "userinfo": Client.objects.get(username=request.session["user"])
-            # "userinfo": "True"
+            "userinfo":user.name
         })
     else:
         return HttpResponseRedirect(reverse("index"))

@@ -3,27 +3,37 @@ from django.db import models
 # Create your models here.
 
 class Profile(models.Model):
+    GENDERS = (
+        ('M', 'M'),
+        ('F', 'F'),
+        ('Other', 'Other'),
+    )
     username = models.CharField(max_length=64)
     name = models.CharField(max_length=64)
     age = models.IntegerField()
     address = models.CharField(max_length=64)
-    gender = models.CharField(max_length=64)
+    gender = models.CharField(max_length=64, choices=GENDERS)
 
 
-    def __str__(self):
-        return f"Client: {self.username} : {self.name} : {self.age} : {self.address} : {self.gender}"
 
 class Client(Profile):
     income = models.IntegerField()
+    def __str__(self):
+        return f"Client: {self.username} : {self.name} : {self.age} : {self.address} : {self.gender} : {self.income}"
 
 
 class Rep(Profile):
-    expertise = models.CharField(max_length=256)
-    division = models.CharField(max_length=256)
+    EXPERTISES = (
+        ('AUTO','AUTO'),
+        ('HOME', 'HOME'),
+    )
+
+    expertise = models.CharField(max_length=256, choices=EXPERTISES)
+    description = models.CharField(max_length=500)
     hours = models.CharField(max_length=256)
 
     def __str__(self):
-        return f"Rep: {self.username} : {self.name} : {self.age} : {self.address} : {self.gender} : {self.expertise} : {self.division} : {self.hours}"
+        return f"Rep: {self.username} : {self.name} : {self.age} : {self.address} : {self.gender} : {self.expertise} : {self.description} : {self.hours}"
 
 
 class Appointments(models.Model):
