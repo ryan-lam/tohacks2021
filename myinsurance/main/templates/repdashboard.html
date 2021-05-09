@@ -15,15 +15,15 @@
     </head>
 
     <body>
-        <p style="font-size: 25px; margin-top: 10px; margin-left: 50px; text-decoration: underline; color: #45D35D;">Hello {{ userinfo.name }}! &ensp;Here are your client's appointments.</p>
+        <p style="font-size: 25px; margin-top: 10px; margin-left: 50px; text-decoration: underline; color: black;">Your client's appointments.</p>
 
         {% for appointment in appointmentdb %}
             <form class="node" style="position: relative;" action="{% url 'repdashboard' %}" method="POST">
                 {% csrf_token %}
                 <p style="font-size: 20px; margin-left: 40px; line-height: 25px; padding-top: 20px;" class="fw-bolder">Appointment Between:</p>
                 <p style="font-size: 20px; margin-left: 40px; line-height: 25px;">{{ appointment.rep.name }} (You) and {{ appointment.client.name }} (Client)</p>
-                <p style="font-size: 20px; margin-left: 40px; line-height: 25px;">Status: {{ appointment.status }}</p>
                 <p style="font-size: 20px; margin-left: 40px; line-height: 25px;">Time: {{ appointment.time }}</p>
+                <p style="font-size: 20px; margin-left: 40px; line-height: 25px;">Status: {{ appointment.status }}</p>
                 <input type="text" value="{{ appointment.client.name }}" name="client_name" hidden>
                 <input type="text" value="{{ appointment.rep.name }}" name="rep_name" hidden>
                 <input type="text" value="{{ appointment.time }}" name="time" hidden>
