@@ -15,18 +15,24 @@
     </head>
 
     <body>
-        <p style="font-size: 25px; margin-top: 10px; margin-left: 50px; text-decoration: underline; color: #45D35D;">Your Appointments</p>
+        <p style="font-size: 25px; margin-top: 10px; margin-left: 50px; text-decoration: underline; color: #45D35D;">Hello {{ userinfo.name }}! &ensp;Here are your client's appointments.</p>
 
         {% for appointment in appointmentdb %}
-            <div class="node">
-                {{ appointment.client.name }}
+            <div class="node" style="position: relative;">
+                {% csrf_token %}
+                <p style="font-size: 20px; margin-left: 40px; line-height: 25px; padding-top: 20px;" class="fw-bolder">Appointment Between:</p>
+                <p style="font-size: 20px; margin-left: 40px; line-height: 25px;">{{ appointment.rep.name }} (You) and {{ appointment.client.name }} (Client)</p>
+                <p style="font-size: 20px; margin-left: 40px; line-height: 25px;">Time: {{ appointment.time }}</p>
+
+                <button class="btn btn-success" style="position: absolute; right: 30px; top: 20px;">Finished Appointment</button>
             </div>
         {% empty %}
             <div class="no_appointment_node">
-                <p>No scheduled appointments.</p>
+                <p style="font-display: 25px; text-align: center; padding-top: 30px;">No scheduled appointments.</p>
             </div>
         {% endfor %}
-
+        
+        
 
         
 

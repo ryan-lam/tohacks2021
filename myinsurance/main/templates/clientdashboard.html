@@ -21,10 +21,13 @@
         <p style="font-size: 25px; margin-top: 10px; margin-left: 50px; text-decoration: underline; color: #45D35D;">Your Appointments</p>
 
         {% for appointment in appointmentdb %}
-            <div class="node">
-                <p style="font-size: 20px; margin-left: 40px; line-height: 25px;">Name: {{ appointment.client.name }}</p>
-                <p style="font-size: 20px; margin-left: 40px; line-height: 25px;">{{ appointment.rep }}</p>
-                <p style="font-size: 20px; margin-left: 40px; line-height: 25px;"> {{ appointment.time }}</p>
+            <div class="node" style="position: relative;">
+                {% csrf_token %}
+                <p style="font-size: 20px; margin-left: 40px; line-height: 25px; padding-top: 20px;" class="fw-bolder">Appointment Between:</p>
+                <p style="font-size: 20px; margin-left: 40px; line-height: 25px;">{{ appointment.client.name }} (You) and {{ appointment.rep.name }} (Representative)</p>
+                <p style="font-size: 20px; margin-left: 40px; line-height: 25px;">Time: {{ appointment.time }}</p>
+
+                <button class="btn btn-danger" style="position: absolute; right: 30px; top: 20px;">Cancel Appointment</button>
             </div>
         {% empty %}
             <div class="no_appointment_node">
@@ -38,8 +41,10 @@
             <p style="font-size: 20px; margin-left: 40px; line-height: 15px;">Name: {{ userinfo.name }}  &emsp; Age: {{ userinfo.age }}</p>
             <p style="font-size: 20px; margin-left: 40px; line-height: 15px;">Gender: {{ userinfo.gender }}</p>
             <p style="font-size: 20px; margin-left: 40px; line-height: 15px;">Adress: {{ userinfo.address }}</p>
-            <p style="font-size: 20px; margin-left: 40px; line-height: 15px;">Income: {{ userinfo.income }}</p>
+            <p style="font-size: 20px; margin-left: 40px; line-height: 15px;">Income: ${{ userinfo.income }}</p>
         </div>
+
+        <div style="height: 30px;"></div>
 
 
         

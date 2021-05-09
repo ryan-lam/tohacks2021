@@ -16,12 +16,28 @@
             </div>
         </nav>  
 
-    
         <p style="font-size: 25px; margin-top: 10px; margin-left: 50px; text-decoration: underline; color: #45D35D;">Available Appointments</p>
-        <div class="node">
-
-        </div>
+        {% for rep in repdb %}
+        <div class="appointment_node" style="position: relative;">
+            <h3 style="margin-left: 40px; padding-top: 20px;">{{ rep.name }} - {{ rep.expertise }}</h3>
+            <p style="margin-left: 40px; width: 80%; line-height: 10px;" class="fw-bolder">Branch/Location: {{ rep.address }}, Hours: {{ rep.hours }}</p>
+            <p style="margin-left: 40px; width: 80%;">{{ rep.description }}</p>
+            
+            <form action="{% url 'booking' %}" method="POST" style="bottom: 20px; position: absolute; width: 100%;">
+                {% csrf_token %}
+                <input type="text" value="{{ client }}" name="client_username" hidden>
+                <input type="text" value="{{ rep.username }}" name="rep_username" hidden>
+                <input type="text" class="form-control" placeholder="Time of Appointment" name="time" style="width: 30%; margin-left: 40px; border-radius: 10px; display: inline;" required>
+                <button class="btn btn-outline-light" type="submit" style="width: 100px; margin-left: 10px; display: inline; margin-top: -3px;">Submit</button>
         
+                
+            </form>
+        </div>
+            
+        {% empty %}
+            <h1>No representatives available</h1>
+        {% endfor %}
+            
 
         
 
