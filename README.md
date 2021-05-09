@@ -1,5 +1,7 @@
 # MyInsurance - TOHacks 2021
 
+![https://github.com/ryan-lam/tohacks2021/blob/main/Logos%20and%20stuff/logo.jpg](Logo)
+
 ## Inspiration
 The frustration of staying on the phone for hours trying to book an appointment is felt by almost everyone. Eliminating this barrier is the first step towards improving the customer experience in the insurance industry, and MyInsurance was designed with that in mind.
 
@@ -15,28 +17,26 @@ MyInsurance is a booking web application in which customers can find, and talk t
 ## Challenges we ran into
 - Getting our databases to work together
 - Navigating the Django workflow
-- Getting our database to have pre-existing data set in it when starting program
-- Getting frontend to work with backend and backend to work with the the databases
+- Getting our database to have pre-existing data set in it when starting the program
+- Getting frontend to work with backend and backend to work with the databases
 - Debugging and understanding Django error messages
 
 ## Accomplishments that we're proud of
-- First time making a full stack web app using Django (literally learned it in the morning)
+- First time making a full-stack web app using Django (literally learned it in the morning)
 - First time working with databases and SQLite3
 - Making a web app that is dynamic and interacts with our databases
 - Linking various databases together
 - Getting better at bootstrap and git
-- Completing first hackathon (Michael)
+- Completing the first hackathon (Michael)
 
 ## What we learned
-- We learned how to use Django framework to make a web app
+- We learned how to use the Django framework to make a web app
 - We learned how to work and use a database (specifically SQLite3)
-- We learned how to have multiple webpages, route different paths, and have dynamic forms on the same page
+- We learned how to have multiple web pages, route different paths, and have dynamic forms on the same page
 
 ## What's next for MyInsurance
 - Adding a chat feature between the client (customer) and the representative
-- Add a rescheduling feature so clients or the representative and reschedule and cancelled appointment
-- Set up notifications for the user/representative so they know if an appointment was approved/cancelled
+- Add a rescheduling feature so clients or the representative and reschedule and canceled appointment
+- Set up notifications for the user/representative so they know if an appointment was approved/canceled
 - Have a better UI/UX by using something like React
 
-## Demo
-- Pending...
