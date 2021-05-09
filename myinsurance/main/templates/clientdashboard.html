@@ -22,7 +22,14 @@
 
         {% for appointment in appointmentdb %}
             <div class="node">
-                {{ appointment }}
+                <p>Appointment between</p>
+                <ul>
+                    <li>{{ appointment.client.name }} (You)</li>
+                    <li>{{ appointment.rep.name }} (Representative)</li>
+                </ul>
+                <p>
+                    at {{ appointment.time }}
+                </p>
             </div>
         {% empty %}
             <div class="no_appointment_node">
